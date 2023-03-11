@@ -74,21 +74,15 @@ public class ProductService extends CommonServices{
         return  map;
     }
     public LinkedList<String[]> sortCustomer(){
-//        Map<String,LinkedList<String[]>> map = new HashMap<>();
-//        LinkedList<String[]> customers = this.fileHandle.readRowsFile();
-//        LinkedList<String[]> resSTT = new LinkedList<>(customers);
-//        LinkedList<String[]> resName = new LinkedList<>(customers);
-//        LinkedList<String[]> resPrice = new LinkedList<>(customers);
-//        LinkedList<String[]> resQuantityInStock = new LinkedList<>(customers);
-//        resSTT.sort((a,b)->a[0].compareTo(b[0]));
-//        resName.sort((a,b)->a[1].compareTo(b[1]));
-//        resPrice.sort((a,b)->a[3].compareTo(b[3]));
-//        resQuantityInStock.sort((a,b)->a[5].compareTo(b[5]));
-//        map.put("id",resSTT);
-//        map.put("name",resName);
-//        map.put("price",resPrice);
-//        map.put("quantityInStock",resQuantityInStock);
-//        return  map;
         return this.fileHandle.readRowsFile();
+    }
+    public void statisticalProduct(){
+        LinkedList<String[]> products = this.fileHandle.readRowsFile();
+        int sumQuatity=0;
+
+        for (String[] s:products
+             ) {
+            sumQuatity+=Integer.parseInt(s[5]);
+        }
     }
 }
