@@ -1,0 +1,4 @@
+1,quan,vn,12000.0,quanao,45
+6,ao,hn,8465.0,quanao,68
+3,khoa,kn,1800.0,ao,89
+12,hkg,shd,35678.0,vdg,150
