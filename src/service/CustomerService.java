@@ -1,6 +1,7 @@
 package src.service;
 
 import src.dao.Customer;
+import src.terminalUI.CustomerUI;
 import src.utils.FileHandle;
 
 import java.util.*;
@@ -29,6 +30,22 @@ public class CustomerService extends CommonServices{
         }
         String str = convertLinkToString(customers);
       this.fileHandle.writeFileEmpty(str);
+    }
+    public void updateCustomerById(int id, Customer customer){
+        LinkedList<String[]> customers = this.fileHandle.readRowsFile();
+        for (String[] arr:customers
+        ) {
+            if (Integer.parseInt(arr[0])==id){
+                arr[1]=customer.getFirstName();
+                arr[2]=customer.getLastName();
+                arr[3]=customer.getEmail();
+                arr[4]=customer.getPhone();
+                break;
+            }
+
+        }
+        String str = convertLinkToString(customers);
+        this.fileHandle.writeFileEmpty(str);
     }
 
     public Map<String,LinkedList<String[]>> findCustomers(String lastName, String email, String phoneNumber){

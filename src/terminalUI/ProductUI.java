@@ -37,25 +37,29 @@ public class ProductUI {
                     addProduct();
                     break;
                 case 3:
+                    System.out.println("SỬA SẢN PHẨM:");
+                    updateProductById();
+                    break;
+                case 4:
                     System.out.println("XOÁ SẢN PHẨM:");
                     deleteProductById();
                     break;
-                case 4:
+                case 5:
                     System.out.println("TÌM KIẾM SẢN PHẨM:");
                     searchProduct();
                     break;
-                case 5:
+                case 6:
                     System.out.println("SẮP SẾP DANH SÁCH SẢN PHẨM:");
                     sortProduct();
                     break;
-                case 6:
+                case 7:
                     break;
                 default:
                     System.out.println("VUI LÒNG NHẬP ĐÚNG THÔNG TIN");
                     break;
             }
         }
-        while (n!=6);
+        while (n!=7);
     }
     public void getProducts(){
         LinkedList<String[]> customers = this.productService.getProduct();
@@ -95,6 +99,28 @@ public class ProductUI {
         }
         catch (Exception ex){
             System.out.println("DELETE FAIL !!!");
+        }
+    }
+    public void updateProductById(){
+        try{
+            Scanner sc = new Scanner(System.in);
+            System.out.println("STT : ");
+            int id = Integer.parseInt(sc.nextLine());
+            System.out.println("Tên : ");
+            String name = sc.nextLine();
+            System.out.println("Brand : ");
+            String brand = sc.nextLine();
+            System.out.println("Price : ");
+            double price = Double.parseDouble(sc.nextLine());
+            System.out.println("Category : ");
+            String catefory = sc.nextLine();
+            System.out.println("QuantityInStock :");
+            int quantityInStock = Integer.parseInt(sc.nextLine());
+            this.productService.updateProductById(id,new Product(id, name, brand,price,catefory,quantityInStock));
+            System.out.println("UPDATE SUCCESS !!!");
+        }
+        catch (Exception ex){
+            System.out.println("UPDATE FAIL !!!");
         }
     }
     public void searchProduct(){

@@ -33,6 +33,23 @@ public class ProductService extends CommonServices{
         String str = convertLinkToString(products);
         this.fileHandle.writeFileEmpty(str);
     }
+    public void updateProductById(int id,Product product){
+        LinkedList<String[]> products = this.fileHandle.readRowsFile();
+        for (String[] arr:products
+        ) {
+            if (Integer.parseInt(arr[0])==id){
+                arr[1]=product.getName();
+                arr[2]=product.getBrand();
+                arr[3]=String.valueOf(product.getPrice());
+                arr[4]=product.getCategory();
+                arr[5]=String.valueOf(product.getQuantityInStock());
+                break;
+            }
+
+        }
+        String str = convertLinkToString(products);
+        this.fileHandle.writeFileEmpty(str);
+    }
 
     public Map<String,LinkedList<String[]>> findProducts(String name, String brand, String category){
         Map<String,LinkedList<String[]>> map = new HashMap<>();

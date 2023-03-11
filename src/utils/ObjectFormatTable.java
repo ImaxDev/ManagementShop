@@ -1,5 +1,7 @@
 package src.utils;
 
+import src.dto.OrderDTO;
+
 import java.util.LinkedList;
 
 public class ObjectFormatTable {
@@ -14,7 +16,6 @@ public class ObjectFormatTable {
         this.columnNames = columnNames;
         this.data = data;
     }
-
     public void printTable() {
         System.out.println(ANSI_RED+"TOTAL "+data.size()+" "+ANSI_RESET);
         // Calculate the width of each column

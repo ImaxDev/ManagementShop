@@ -21,9 +21,10 @@ public class CustomerUI {
             System.out.println("1 : Hiển thị danh sách khách hàng");
             System.out.println("2 : Thêm khách hàng");
             System.out.println("3 : Xoá khách hàng");
-            System.out.println("4 : Tìm kiếm khách hàng");
-            System.out.println("5 : Sắp xếp khách hàng");
-            System.out.println("6 : Thoát");
+            System.out.println("4 : Sửa khách hàng");
+            System.out.println("5 : Tìm kiếm khách hàng");
+            System.out.println("6 : Sắp xếp khách hàng");
+            System.out.println("7 : Thoát");
             System.out.println("Vui lòng chọn chức năng liên quan bằng cách nhập input :");
             n=Integer.parseInt(sc.nextLine());
             switch (n){
@@ -40,21 +41,25 @@ public class CustomerUI {
                     deleteCustomerById();
                     break;
                 case 4:
+                    System.out.println("SỬA KHÁCH HÀNG:");
+                    updateCustomer();
+                    break;
+                case 5:
                     System.out.println("TÌM KIẾM KHÁCH HÀNG:");
                     searchCustomer();
                     break;
-                case 5:
+                case 6:
                     System.out.println("SẮP SẾP DANH SÁCH KHÁCH HÀNG:");
                     sortCustomer();
                     break;
-                case 6:
+                case 7:
                     break;
                 default:
                     System.out.println("VUI LÒNG NHẬP ĐÚNG THÔNG TIN");
                     break;
             }
         }
-        while (n!=6);
+        while (n!=7);
     }
     public void getCustomers(){
        LinkedList<String[]> customers = this.customerService.getCustomers();
@@ -125,6 +130,25 @@ public class CustomerUI {
         }
         catch (Exception ex){
             System.out.println("SORT FAIL !!!");
+        }
+    }
+    public void updateCustomer(){
+        try {
+            Scanner sc = new Scanner(System.in);
+            System.out.println("STT : ");
+            int id = Integer.parseInt(sc.nextLine());
+            System.out.println("Tên : ");
+            String firstName = sc.nextLine();
+            System.out.println("Họ : ");
+            String lastName = sc.nextLine();
+            System.out.println("Email : ");
+            String email = sc.nextLine();
+            System.out.println("SDT : ");
+            String phoneNumber = sc.nextLine();
+            this.customerService.updateCustomerById(id, new Customer(id, firstName, lastName, email, phoneNumber));
+            System.out.println("UPDATE THÀNH CÔNG ");
+        }catch(Exception ex){
+            System.out.println("UPDATE THAT BAI");
         }
     }
 }
